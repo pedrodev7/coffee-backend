@@ -16,7 +16,7 @@ public class CafeDaManhaService {
 
     @Transactional
     public void criarCafeDaManha(CafeDaManha cafeDaManha){
-        cafeDaManhaRepository.addCafeDaManha(cafeDaManha);
+        cafeDaManhaRepository.save(cafeDaManha);
     }
 
 }

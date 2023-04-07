@@ -13,7 +13,7 @@ public class CafeDaManhaRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void addCafeDaManha(CafeDaManha cafeDaManha){
+    public void save(CafeDaManha cafeDaManha){
         entityManager.createNativeQuery("INSERT INTO cafedamanha_tb (data_do_cafe) values (?)")
             .setParameter(1, cafeDaManha.getDataDoCafe())
             .executeUpdate();
