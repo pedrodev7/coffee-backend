@@ -16,31 +16,31 @@ public class ClienteRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void adicionarCliente(Cliente cliente) {
+    public void save(Cliente cliente) {
         entityManager.createNativeQuery("INSERT INTO cliente_tb (nome, cpf) values (?,?)")
                 .setParameter(1, cliente.getNome())
                 .setParameter(2, cliente.getCpf())
                 .executeUpdate();
     }
 
-    public List<Cliente> listarTodosOsClientes() {
+    public List<Cliente> findAll() {
         return new ArrayList<>(
                 entityManager.createNativeQuery("SELECT * FROM cliente_tb", Cliente.class).getResultList());
     }
 
-    public List<Cliente> buscarClientePorCpf(String cpf) {
+    public List<Cliente> findByCpf(String cpf) {
         return entityManager.createNativeQuery("SELECT * from cliente_tb where cpf = ?", Cliente.class)
                 .setParameter(1, cpf)
                 .getResultList();
     }
 
-    public List<Cliente> buscarClientePorId(Long id) {
+    public List<Cliente> findById(Long id) {
         return entityManager.createNativeQuery("SELECT * from cliente_tb where id = ?", Cliente.class)
                 .setParameter(1, id)
                 .getResultList();
     }
 
-    public void atualizarCliente(Cliente cliente) {
+    public void update(Cliente cliente) {
         entityManager.createNativeQuery("UPDATE cliente_tb SET nome = ?, cpf = ? where id = ?")
                 .setParameter(1, cliente.getNome())
                 .setParameter(2, cliente.getCpf())
@@ -48,7 +48,7 @@ public class ClienteRepository {
                 .executeUpdate();
     }
 
-    public void removerClienteById(Long id) {
+    public void deleteById(Long id) {
         entityManager.createNativeQuery("DELETE from cliente_tb where id = ?")
             .setParameter(1, id)
             .executeUpdate();

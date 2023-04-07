@@ -12,7 +12,6 @@ public class ClienteCafeRepository {
     
     @PersistenceContext
     private EntityManager entityManager;
-
     public void save(ClienteCafe clienteCafe){
         entityManager.createNativeQuery("INSERT INTO cliente_cafe (id_cliente,id_cafe,nome_do_produto) VALUES (?,?,?)")
             .setParameter(1, clienteCafe.getIdCliente())

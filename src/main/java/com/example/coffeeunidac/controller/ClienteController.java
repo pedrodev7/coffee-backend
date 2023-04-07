@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.coffeeunidac.model.Cliente;
@@ -19,6 +20,7 @@ import com.example.coffeeunidac.service.ClienteService;
 import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired
@@ -44,7 +46,7 @@ public class ClienteController {
     }
 
     @GetMapping("/listarClientes")
-    public ResponseEntity<List<Cliente>> listarClientes() {
+    public ResponseEntity<List<Cliente>> listarTodosOsClientes() {
         try {
             List<Cliente> cliente = clienteService.listAllClientes();
             return ResponseEntity.ok(cliente);
@@ -54,7 +56,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{cpf}/getCliente")
-    public ResponseEntity<Cliente> getCliente(@PathVariable String cpf) {
+    public ResponseEntity<Cliente> getClienteByCpf(@PathVariable String cpf) {
         try {
             List<Cliente> cliente = clienteService.getCliente(cpf);
             return ResponseEntity.ok(cliente.get(0));
@@ -64,7 +66,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}/clienteId")
-    public ResponseEntity<Cliente> getCliente(@PathVariable Long id) {
+    public ResponseEntity<Cliente> getClienteId(@PathVariable Long id) {
         try {
             List<Cliente> cliente = clienteService.getClienteById(id);
             return ResponseEntity.ok(cliente.get(0));

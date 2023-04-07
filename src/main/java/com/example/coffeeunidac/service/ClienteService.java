@@ -18,31 +18,31 @@ public class ClienteService {
 
     @Transactional
     public void addCliente(Cliente cliente){
-        clienteRepository.adicionarCliente(cliente);
+        clienteRepository.save(cliente);
     }
 
     @Transactional
     public List<Cliente> listAllClientes(){
-        return clienteRepository.listarTodosOsClientes();
+        return clienteRepository.findAll();
     }
 
     @Transactional
     public List<Cliente> getCliente(String cpf){
-        return clienteRepository.buscarClientePorCpf(cpf);
+        return clienteRepository.findByCpf(cpf);
     }
 
     @Transactional
     public List<Cliente> getClienteById(Long id){
-        return clienteRepository.buscarClientePorId(id);
+        return clienteRepository.findById(id);
     }
 
     @Transactional
     public void atualizarCliente(Cliente cliente){
-        clienteRepository.atualizarCliente(cliente);
+        clienteRepository.update(cliente);
     }
 
     @Transactional
     public void removerClienteById(Long id){
-        clienteRepository.removerClienteById(id);
+        clienteRepository.deleteById(id);
     }
 }
