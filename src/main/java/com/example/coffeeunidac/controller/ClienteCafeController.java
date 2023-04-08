@@ -20,9 +20,6 @@ public class ClienteCafeController {
 
     @PostMapping("/addProdutoNoCafe")
     public ResponseEntity<String> adicionarProdutoNoCafeDaManha(@RequestBody ClienteCafe clienteCafe){
-        System.out.println(">>>>>>>>>>>>" + clienteCafe.getIdCafe());
-        System.out.println(">>>>>>>>>>>>" + clienteCafe.getIdCliente());
-        System.out.println(">>>>>>>>>>>>" + clienteCafe.getNomeDoProduto());
         clienteCafeService.adicionarProdutoNoCafeDaManha(clienteCafe);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
