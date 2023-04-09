@@ -10,36 +10,59 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "cliente_cafe", uniqueConstraints = @UniqueConstraint(columnNames = {"id_cafe", "nomeDoProduto"}))
-public class ClienteCafe {
-    
+@Table(name = "itemcafe_tb", uniqueConstraints = @UniqueConstraint(columnNames = { "idCafe", "nomeDoProduto" }))
+public class ItemCafe {
+
     @Id
-    @Column(name = "id_cafe")
+    @Column(name = "idcafe")
     private Long idCafe;
 
     @Id
-    @Column(name = "id_cliente")
+    @Column(name = "idcliente")
     private Long idCliente;
 
     @Id
+    @Column(name = "nomedoproduto")
     private String nomeDoProduto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cafe", insertable = false, updatable = false)
+    @JoinColumn(name = "idcafe", insertable = false, updatable = false)
     private CafeDaManha cafeDaManha;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    @JoinColumn(name = "idcliente", insertable = false, updatable = false)
     private Cliente cliente;
 
-    public ClienteCafe(Long idCafe, Long idCliente, String nomeDoProduto) {
+    public ItemCafe(Long idCafe, Long idCliente, String nomeDoProduto) {
         this.idCafe = idCafe;
         this.idCliente = idCliente;
         this.nomeDoProduto = nomeDoProduto;
     }
 
-    public ClienteCafe(){
+    public ItemCafe(String nomeDoProduto, CafeDaManha cafeDaManha, Cliente cliente) {
+        this.nomeDoProduto = nomeDoProduto;
+        this.cafeDaManha = cafeDaManha;
+        this.cliente = cliente;
+    }
 
+    public ItemCafe() {
+
+    }
+
+    public CafeDaManha getCafeDaManha() {
+        return cafeDaManha;
+    }
+
+    public void setCafeDaManha(CafeDaManha cafeDaManha) {
+        this.cafeDaManha = cafeDaManha;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Long getIdCafe() {
@@ -65,7 +88,5 @@ public class ClienteCafe {
     public void setNomeDoProduto(String nomeDoProduto) {
         this.nomeDoProduto = nomeDoProduto;
     }
-
-    
 
 }
