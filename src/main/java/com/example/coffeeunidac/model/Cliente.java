@@ -26,7 +26,7 @@ public class Cliente {
     private String cpf;
 
     @OneToMany(mappedBy = "cliente")
-    private List<ClienteCafe> cafeDaManha;
+    private List<ItemCafe> itemCafeDaManha;
 
     public Cliente(String nome, String cpf) {
         this.nome = nome;

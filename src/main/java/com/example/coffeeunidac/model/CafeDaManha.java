@@ -19,9 +19,10 @@ public class CafeDaManha {
     private LocalDate dataDoCafe;
 
     @OneToMany(mappedBy = "cafeDaManha")
-    private List<ClienteCafe> clienteCafe;
+    private List<ItemCafe> itemCafeDaManha;
 
-    public CafeDaManha(){}
+    public CafeDaManha() {
+    }
 
     public CafeDaManha(LocalDate dataDoCafe) {
         this.dataDoCafe = dataDoCafe;
@@ -41,5 +42,5 @@ public class CafeDaManha {
 
     public void setDataDoCafe(LocalDate dataDoCafe) {
         this.dataDoCafe = dataDoCafe;
-    } 
+    }
 }
