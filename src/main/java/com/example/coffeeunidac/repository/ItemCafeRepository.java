@@ -16,7 +16,7 @@ public class ItemCafeRepository {
     private EntityManager entityManager;
 
     public void save(ItemCafe itemCafe) {
-        entityManager.createNativeQuery("INSERT INTO cliente_cafe (idcliente,idcafe,nomedoproduto) VALUES (?,?,?)")
+        entityManager.createNativeQuery("INSERT INTO itemcafe_tb (idcliente,idcafe,nomedoproduto) VALUES (?,?,?)")
                 .setParameter(1, itemCafe.getIdCliente())
                 .setParameter(2, itemCafe.getIdCafe())
                 .setParameter(3, itemCafe.getNomeDoProduto())
@@ -25,10 +25,10 @@ public class ItemCafeRepository {
 
     public List<ItemCafe> findItemCafeById(Long id) {
 
-        String sql = "select * from cliente_cafe cc "
-                + "inner join cafedamanha_tb ct on cc.idcafe = ct.id "
-                + "inner join cliente_tb c on cc.idcliente = c.id "
-                + "where cc.idcafe = ?";
+        String sql = "select * from itemcafe_tb it "
+                + "inner join cafedamanha_tb ct on it.idcafe = ct.id "
+                + "inner join cliente_tb c on it.idcliente = c.id "
+                + "where it.idcafe = ?";
 
         List<ItemCafe> listaDeItens = entityManager.createNativeQuery(sql, ItemCafe.class)
                 .setParameter(1, id)
