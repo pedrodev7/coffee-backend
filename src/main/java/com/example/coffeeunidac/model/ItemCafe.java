@@ -1,6 +1,5 @@
 package com.example.coffeeunidac.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -10,43 +9,60 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "itemcafe_tb", uniqueConstraints = @UniqueConstraint(columnNames = { "idCafe", "nomeDoProduto" }))
+@Table(name = "itemcafe_tb", uniqueConstraints = @UniqueConstraint(columnNames = { "id_cafe", "nome_do_produto" }))
 public class ItemCafe {
 
     @Id
-    @Column(name = "idcafe")
-    private Long idCafe;
+    private Long id_cafe;
+
+    private Long id_cliente;
 
     @Id
-    @Column(name = "idcliente")
-    private Long idCliente;
+    private String nome_do_produto;
 
-    @Id
-    @Column(name = "nomedoproduto")
-    private String nomeDoProduto;
+    private Boolean trouxe;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcafe", insertable = false, updatable = false)
+    @JoinColumn(name = "id_cafe", insertable = false, updatable = false)
     private CafeDaManha cafeDaManha;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcliente", insertable = false, updatable = false)
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
-
-    public ItemCafe(Long idCafe, Long idCliente, String nomeDoProduto) {
-        this.idCafe = idCafe;
-        this.idCliente = idCliente;
-        this.nomeDoProduto = nomeDoProduto;
-    }
-
-    public ItemCafe(String nomeDoProduto, CafeDaManha cafeDaManha, Cliente cliente) {
-        this.nomeDoProduto = nomeDoProduto;
-        this.cafeDaManha = cafeDaManha;
-        this.cliente = cliente;
-    }
 
     public ItemCafe() {
 
+    }
+
+    public ItemCafe(Long id_cafe, Long id_cliente, String nome_do_produto) {
+        this.trouxe = false;
+        this.id_cafe = id_cafe;
+        this.id_cliente = id_cliente;
+        this.nome_do_produto = nome_do_produto;
+    }
+
+    public Long getId_cafe() {
+        return id_cafe;
+    }
+
+    public void setId_cafe(Long id_cafe) {
+        this.id_cafe = id_cafe;
+    }
+
+    public Long getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public String getNome_do_produto() {
+        return nome_do_produto;
+    }
+
+    public void setNome_do_produto(String nome_do_produto) {
+        this.nome_do_produto = nome_do_produto;
     }
 
     public CafeDaManha getCafeDaManha() {
@@ -65,28 +81,12 @@ public class ItemCafe {
         this.cliente = cliente;
     }
 
-    public Long getIdCafe() {
-        return idCafe;
+    public Boolean getTrouxe() {
+        return trouxe;
     }
 
-    public void setIdCafe(Long idCafe) {
-        this.idCafe = idCafe;
+    public void setTrouxe(Boolean trouxe) {
+        this.trouxe = trouxe;
     }
-
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public String getNomeDoProduto() {
-        return nomeDoProduto;
-    }
-
-    public void setNomeDoProduto(String nomeDoProduto) {
-        this.nomeDoProduto = nomeDoProduto;
-    }
-
+    
 }
