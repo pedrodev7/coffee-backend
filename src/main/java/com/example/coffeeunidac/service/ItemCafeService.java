@@ -25,4 +25,14 @@ public class ItemCafeService {
     public List<ItemCafe> listAllitensCafeById(Long id){
         return itemCafeRepository.findItemCafeById(id);
     }
+
+    @Transactional
+    public void removerProdutoNoCafeDaManha(Long idCliente, String nomeProduto){
+        itemCafeRepository.deleteItemCafeById(idCliente, nomeProduto);
+    }
+
+    @Transactional
+    public void trazerItemDoCafeDaManha(Long idCliente, String nomeProduto){
+        itemCafeRepository.marcarItemCafeById(idCliente, nomeProduto);
+    }
 }
