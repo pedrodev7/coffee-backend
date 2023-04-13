@@ -1,5 +1,7 @@
 package com.example.coffeeunidac.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,18 @@ public class CafeDaManhaService {
         cafeDaManhaRepository.save(cafeDaManha);
     }
 
+    @Transactional
+    public List<CafeDaManha> listarCafeDaManha(){
+        return cafeDaManhaRepository.findAll();
+    }
+
+    @Transactional
+    public List<CafeDaManha> listarCafeDaManhaById(Long id){
+        return cafeDaManhaRepository.findById(id);
+    }
+
+    @Transactional
+    public void removerCafeDaManha(Long id){
+        cafeDaManhaRepository.removeById(id);
+    }
 }
