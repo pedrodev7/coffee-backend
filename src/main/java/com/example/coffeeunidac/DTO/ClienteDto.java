@@ -2,6 +2,7 @@ package com.example.coffeeunidac.DTO;
 
 public class ClienteDto {
     private String nome;
+    private String cpf;
 
     public String getNome() {
         return nome;
@@ -9,6 +10,14 @@ public class ClienteDto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
 }
